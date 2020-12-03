@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Lab5Android</string>
+    <string name="button">Button</string>
+    <string name="name">Name</string>
+
+    <string name="to_second">to_second</string>
+    <string name="to_first">to_first</string>
+    <string name="to_third">to_third</string>
+    <string name="for_task4">for_task4</string>
+    <string name="textView">textView</string>
+    <string name="about">About</string>
+    <string name="open_activity1">open_activity1</string>
+    <string name="open_activity2">open_activity2</string>
+    <string name="open_activity3">open_activity3</string>
+</resources>
