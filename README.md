@@ -125,7 +125,6 @@ public class MainActivityTest {
 
 Сразу преведу код тестов.
 ```
-@RunWith(AndroidJUnit4.class)
 public class MainActivity1Test {
 
     @Rule
@@ -161,9 +160,10 @@ public class MainActivity1Test {
         checkNavigationDrawer();
     }
 
-    @Test
+
     public void checkNavigationDrawer() {
         onView(withId(R.id.drawer_layout)).check(matches(isClosed(Gravity.LEFT))).perform(DrawerActions.open());
+        onView(withId(R.id.drawer_layout)).check(matches(isDisplayed()));
         onView(withId(R.id.drawer_layout)).check(matches(isOpen(Gravity.LEFT))).perform(DrawerActions.close());
     }
 
@@ -184,6 +184,10 @@ public class MainActivity1Test {
         onView(withId(R.id.to_third)).check(matches(isDisplayed()));
         onView(withId(R.id.to_second)).check((doesNotExist()));
         onView(withId(R.id.for_task_4)).check((doesNotExist()));
+
+        onView(withId(R.id.drawer_layout)).perform(pressBack());
+        checkButtonsInFirstActivity();
+
     }
 
     @Test
@@ -200,6 +204,7 @@ public class MainActivity1Test {
 
     @Test
     public void checkScreenRotationForSecondActivity() {
+        checkButtonsInFirstActivity();
         mainActivityRule.getScenario().onActivity(new ActivityScenario.ActivityAction<MainActivity1>() {
             @Override
             public void perform(MainActivity1 activity) {
@@ -209,26 +214,23 @@ public class MainActivity1Test {
         onView(withId(R.id.to_second)).perform(click());
         onView(withId(R.id.to_first)).check(matches(isDisplayed()));
         onView(withId(R.id.to_third)).check(matches(isDisplayed()));
-        onView(withId(R.id.to_second)).check((doesNotExist()));
-        onView(withId(R.id.for_task_4)).check((doesNotExist()));
-        checkNavigationDrawer();
+
     }
+
 
     @Test
     public void checkScreenRotationForThirdActivity() {
-        onView(withId(R.id.to_second)).perform(click());
-        onView(withId(R.id.to_third)).perform(click());
+        checkButtonsInFirstActivity();
         mainActivityRule.getScenario().onActivity(new ActivityScenario.ActivityAction<MainActivity1>() {
             @Override
             public void perform(MainActivity1 activity) {
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
             }
         });
-        onView(withId(R.id.to_second)).check(matches(isDisplayed()));
+        onView(withId(R.id.to_second)).perform(click());
+        onView(withId(R.id.to_third)).perform(click());
         onView(withId(R.id.to_first)).check(matches(isDisplayed()));
-        onView(withId(R.id.to_third)).check((doesNotExist()));
-        onView(withId(R.id.for_task_4)).check((doesNotExist()));
-        checkNavigationDrawer();
+        onView(withId(R.id.to_second)).check(matches(isDisplayed()));
     }
 }
 ```
@@ -240,4 +242,4 @@ public class MainActivity1Test {
 Методы "checkScreenRotation..." проверяют правильность переворота экрана.
 
 #Выводы
-В данной лабараторной работе использовался фрейворк "Espresso" который позволял нам проверить правильность работы нашей программы. На мой взгляд этот фреймворк оказался довольно удобным и полезным, я бы его стал использовать, но при использовании его впервые тестирование вышло довольно долгим из-за отсутствия понимания этого фреймворка. На данный момент эта лабраторная работа показалась мне самой интерестной. На все выполнение работы ушло 3-4 часа(с написанием отчета).
+В данной лабараторной работе использовался фрейворк "Espresso" который позволял нам проверить правильность работы нашей программы. На мой взгляд этот фреймворк оказался довольно удобным и полезным, я бы его стал использовать, но при использовании его впервые тестирование вышло довольно долгим из-за отсутствия понимания этого фреймворка. На данный момент эта лабраторная работа показалась мне самой интерестной. На все выполнение работы ушло 3-4 часа(с написанием отчета).Больше всего времени заняло выяснение проблемы с тестами имеющими переворот экрана.
