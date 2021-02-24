@@ -20,7 +20,7 @@
 Приведу код для понимания происходящего.
 
 MainActivity.
-```
+```Java
 public class MainActivity extends AppCompatActivity {
     private int count = 0;
     private ActivityMainBinding activityMainBinding;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 activity_main.xml
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -83,7 +83,7 @@ activity_main.xml
 Теперь проделаем такие же действия, но с помощью фреймворка.
 Сразу преведу код теста.
 MainActivityTest.
-```
+```Java
 public class MainActivityTest {
     @Rule
     public ActivityScenarioRule<MainActivity> mainActivityRule = new ActivityScenarioRule<>(MainActivity.class);
@@ -124,7 +124,7 @@ public class MainActivityTest {
 Для это задачи был взят код из лабараторной работы №3(task2). 
 
 Сразу преведу код тестов.
-```
+```Java
 public class MainActivity1Test {
 
     @Rule
