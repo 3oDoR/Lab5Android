@@ -164,7 +164,6 @@ public class MainActivity1Test {
 
     public void checkNavigationDrawer() {
         onView(withId(R.id.drawer_layout)).check(matches(isClosed(Gravity.LEFT))).perform(DrawerActions.open());
-        onView(withId(R.id.drawer_layout)).check(matches(isDisplayed()));
         onView(withId(R.id.drawer_layout)).check(matches(isOpen(Gravity.LEFT))).perform(DrawerActions.close());
     }
 
